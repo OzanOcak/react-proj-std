@@ -1,5 +1,7 @@
 ## react foundation
 
+### reac and react-dom libraries
+
 We satrt crateing a html file then add reactdom and react packages
 
 ```html
@@ -29,3 +31,5 @@ const rootNode = document.getElementById("root");
 const root = ReactDOM.createRoot(rootNode);
 root.render(Greeting());
 ```
+
+You can see the [code] (https://github.com/OzanOcak/react-proj-std/blob/main/react-basics/01/index.html)
