@@ -1,6 +1,6 @@
-## react foundation
+## React Foundation
 
-### reac and react-dom libraries
+### React and React-dom libraries
 
 We satrt crateing a html file then add reactdom and react packages
 
@@ -23,7 +23,7 @@ const Greeting = () => {
   return React.createElement(
     "h1",
     { style: { color: "blue" } },
-    "hello world!!!"
+    "Hello React!!!"
   );
 };
 
@@ -32,4 +32,21 @@ const root = ReactDOM.createRoot(rootNode);
 root.render(Greeting());
 ```
 
-You can see the [code] (https://github.com/OzanOcak/react-proj-std/blob/main/react-basics/01/index.html)
+note that Since Greeting is a function, it needs to be called
+
+You can see the [code](https://github.com/OzanOcak/react-proj-std/blob/main/react-basics/01/index.html)
+
+### JSX
+
+We can write html like syntax within javascript file with jsx files, in oreder to do that we need to compile jsx to js with babel
+
+```html
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+```
+
+and we can create react element without React.createElement() after adding
+**<script type="text/babel">**
+
+```javascript
+const Greeting = () => <h1>Hello React with JSX!!!</h1>;
+```
