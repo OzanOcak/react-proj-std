@@ -1,4 +1,6 @@
-## React Foundation
+## Creating basic react app with CDN of React,React-Dom and babel
+
+We will create the most basic react app with react,react-dom and babel libraries, first we will add the CDN of the libraries in to html file, Now we can create our virtual Dom tith help of React-dom librry and we can return jsx element in treact component to out virtual dom with help of babel tranpiler.
 
 ### React and React-dom libraries
 
