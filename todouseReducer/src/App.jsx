@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useReducer } from "react";
 import AddTodo from "./AddTodo";
 import TaskList from "./TaskList";
 
@@ -10,26 +10,18 @@ const list = [
 let nextId = 3;
 
 export default function App() {
-  const [todos, setTodos] = useState(list);
+  const [todos, dispatch] = useReducer(todosReducer, list);
 
   let doneTodos = todos.filter((todo) => todo.done === true).length;
 
   function handleAddTodo(title) {
-    setTodos([...todos, { id: nextId++, title: title, done: false }]);
+    dispatch({ type: "added", id: nextId++, title: title });
   }
   function handleDeleteTodo(todoId) {
-    setTodos(todos.filter((todo) => todo.id !== todoId));
+    dispatch({ type: "deleted", id: todoId });
   }
   function handleChangeTodo(updatedTodo) {
-    setTodos(
-      todos.map((todo) => {
-        if (todo.id === updatedTodo.id) {
-          return updatedTodo;
-        } else {
-          return todo;
-        }
-      })
-    );
+    dispatch({ type: "changed", todo: updatedTodo });
   }
 
   return (
@@ -46,4 +38,34 @@ export default function App() {
       </p>
     </>
   );
+}
+
+function todosReducer(todos, action) {
+  switch (action.type) {
+    case "added": {
+      return [
+        ...todos,
+        {
+          id: action.id,
+          title: action.title,
+          done: false,
+        },
+      ];
+    }
+    case "changed": {
+      return todos.map((t) => {
+        if (t.id === action.todo.id) {
+          return action.todo;
+        } else {
+          return t;
+        }
+      });
+    }
+    case "deleted": {
+      return todos.filter((t) => t.id !== action.id);
+    }
+    default: {
+      throw Error("Unknown action: " + action.type);
+    }
+  }
 }
