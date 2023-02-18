@@ -1,11 +1,14 @@
-import { useState } from "react";
-export default function TaskList({ todos, onDelete, onChange }) {
+import { useState, useContext } from "react";
+import { TodosContext, TodosDispatchContext } from "./TodosContext.js";
+
+export default function TaskList() {
+  const todos = useContext(TodosContext);
   return (
     <ul>
       {todos.map((todo) => {
         return (
           <li key={todo.id}>
-            <Task todo={todo} onDelete={onDelete} onChange={onChange} />
+            <Todo todo={todo} />
           </li>
         );
       })}
@@ -13,8 +16,9 @@ export default function TaskList({ todos, onDelete, onChange }) {
   );
 }
 
-function Task({ todo, onDelete, onChange }) {
+function Todo({ todo }) {
   const [isEditing, setIsEditing] = useState(false);
+  const dispatch = useContext(TodosDispatchContext);
 
   return (
     <label>
@@ -22,13 +26,21 @@ function Task({ todo, onDelete, onChange }) {
         type="checkbox"
         checked={todo.done}
         onChange={(e) => {
-          onChange({ ...todo, done: e.target.checked });
+          dispatch({
+            type: "changed",
+            todo: { ...todo, title: e.target.value },
+          });
         }}
       />
       {isEditing ? (
         <input
           value={todo.title}
-          onChange={(e) => onChange({ ...todo, title: e.target.value })}
+          onChange={(e) => {
+            dispatch({
+              type: "changed",
+              todo: { ...todo, done: e.target.checked },
+            });
+          }}
         />
       ) : (
         todo.title
@@ -36,7 +48,16 @@ function Task({ todo, onDelete, onChange }) {
       <button onClick={() => setIsEditing(!isEditing)}>
         {isEditing ? "Save" : "Edit"}
       </button>
-      <button onClick={() => onDelete(todo.id)}>Delete</button>
+      <button
+        onClick={() => {
+          dispatch({
+            type: "deleted",
+            id: todo.id,
+          });
+        }}
+      >
+        Delete
+      </button>
     </label>
   );
 }

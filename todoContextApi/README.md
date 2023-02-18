@@ -40,3 +40,16 @@ export default function TaskApp() {
   );
 }
 ```
+
+#### Step 3: Use context anywhere in the tree
+
+```javascript
+<TodosContext.Provider value={todos}>
+  <TodosDispatchContext.Provider value={dispatch}>
+    <AddTodo />
+    <TaskList />
+  </TodosDispatchContext.Provider>
+</TodosContext.Provider>
+```
+
+Now we dont need to pass any arguments in the react components thanks to context api

@@ -1,7 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { TodosDispatchContext } from "./TodosContext.js";
 
-export default function AddTodo({ onAddTodo }) {
+let nextId = 3;
+
+export default function AddTodo() {
   const [title, setTitle] = useState("");
+  const dispatch = useContext(TodosDispatchContext);
+
   return (
     <>
       <input
@@ -12,7 +17,11 @@ export default function AddTodo({ onAddTodo }) {
       <button
         onClick={() => {
           setTitle("");
-          onAddTodo(title);
+          dispatch({
+            type: "added",
+            id: nextId++,
+            title: title,
+          });
         }}
       >
         Add
