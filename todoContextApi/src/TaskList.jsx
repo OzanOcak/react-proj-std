@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { TodosContext, TodosDispatchContext } from "./TodosContext.js";
+import { TodosContext, TodosDispatchContext } from "./TodosContext.jsx";
 
 export default function TaskList() {
   const todos = useContext(TodosContext);

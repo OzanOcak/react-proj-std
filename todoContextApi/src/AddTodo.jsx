@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { TodosDispatchContext } from "./TodosContext.js";
+import { TodosDispatchContext } from "./TodosContext.jsx";
 
 let nextId = 3;
 

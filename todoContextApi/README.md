@@ -53,3 +53,19 @@ export default function TaskApp() {
 ```
 
 Now we dont need to pass any arguments in the react components thanks to context api
+
+#### Moving all wiring into a single file
+
+```javascript
+export function TasksProvider({ children }) {
+  const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
+
+  return (
+    <TasksContext.Provider value={tasks}>
+      <TasksDispatchContext.Provider value={dispatch}>
+        {children}
+      </TasksDispatchContext.Provider>
+    </TasksContext.Provider>
+  );
+}
+```
