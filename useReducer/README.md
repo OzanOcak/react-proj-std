@@ -51,3 +51,21 @@ function reducer(state, action) {
       return { count: state.count + 1 };
 
 ```
+
+We can finally add constant values instead of giving error probe strings
+
+```js
+const ACTIONS = {
+  INCREMENT: "icrement",
+  DECREMENT: "decrement",
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case ACTIONS.INCREMENT:
+
+```
+
+and dispatch them with constant values
+
+you can find the in the [link](https://codesandbox.io/s/usereducer-o22mqr)
