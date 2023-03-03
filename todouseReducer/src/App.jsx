@@ -1,6 +1,7 @@
 import { useReducer } from "react";
 import AddTodo from "./AddTodo";
-import TaskList from "./TaskList";
+import todosReducer from "./reducer";
+import TodoList from "./TodoList";
 
 const list = [
   { id: 0, title: "tomato", done: true },
@@ -25,47 +26,17 @@ export default function App() {
   }
 
   return (
-    <>
+    <div className=" flex flex-col items-center">
       <AddTodo onAddTodo={handleAddTodo} />
-      <TaskList
+      <TodoList
         todos={todos}
         onDelete={handleDeleteTodo}
         onChange={handleChangeTodo}
       />
-      <hr />
-      <p>
+      <hr className="text-blue-700" />
+      <p className="text-red-400">
         {doneTodos} of {todos.length}
       </p>
-    </>
+    </div>
   );
-}
-
-function todosReducer(todos, action) {
-  switch (action.type) {
-    case "added": {
-      return [
-        ...todos,
-        {
-          id: action.id,
-          title: action.title,
-          done: false,
-        },
-      ];
-    }
-    case "changed": {
-      return todos.map((t) => {
-        if (t.id === action.todo.id) {
-          return action.todo;
-        } else {
-          return t;
-        }
-      });
-    }
-    case "deleted": {
-      return todos.filter((t) => t.id !== action.id);
-    }
-    default: {
-      throw Error("Unknown action: " + action.type);
-    }
-  }
 }
