@@ -14,8 +14,8 @@ function Home() {
   }, []);
   return (
     <div>
-      <LatestNews />
-      <OtherNews />
+      <LatestNews latest={state.articles.latestNews} />
+      <OtherNews otherNews={state.articles.otherNews} />
     </div>
   );
 }
