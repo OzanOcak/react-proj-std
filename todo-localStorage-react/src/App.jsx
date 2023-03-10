@@ -37,7 +37,7 @@ function App() {
   return (
     <div
       className="m-0 p-0 box-border font-serif bg-[#191919]
-     text-[#F2F2F2] min-h-screen flex flex-col"
+     text-[#F2F2F2] min-h-screen flex flex-col w-screen"
     >
       <Header handleAddTask={addTask} />
       <Tasks
