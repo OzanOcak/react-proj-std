@@ -6,7 +6,7 @@ const showLatest = ({ latest }) => {
     <>
       {latest
         ? latest.map((item) => (
-            <Link to="/article/${item.id" key={item.id} className="item">
+            <Link to={`/article/${item.id}`} key={item.id} className="item">
               <div
                 className="image_cover"
                 style={{ background: `url(/images/articles/${item.img})` }}
