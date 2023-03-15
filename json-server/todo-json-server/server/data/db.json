@@ -1,7 +1,24 @@
 {
-    "items":[
-        {"id":1,"checked":false,"item":"dog"},
-        {"id":1,"checked":false,"item":"bird"},
-        {"id":1,"checked":false,"item":"cat"}
-    ]
+  "items": [
+    {
+      "id": 1,
+      "checked": false,
+      "item": "dog"
+    },
+    {
+      "id": 2,
+      "checked": false,
+      "item": "bird"
+    },
+    {
+      "id": 4,
+      "checked": false,
+      "item": "cow"
+    },
+    {
+      "id": 5,
+      "checked": false,
+      "item": "duck"
+    }
+  ]
 }
