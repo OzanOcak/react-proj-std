@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "json-server": "^0.17.2"
+  },
+  "scripts":{
+    "serve":"npx json-server -w data/db.json -p 4000"
+  }
+}
