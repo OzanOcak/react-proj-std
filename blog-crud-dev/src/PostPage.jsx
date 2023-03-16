@@ -4,7 +4,7 @@ const PostPage = ({ posts, handleDelete }) => {
   const { id } = useParams();
   const post = posts.find((post) => post.id.toString() === id);
   return (
-    <main className="w-screen flex flex-col items-center  ">
+    <main className="w-screen flex flex-col items-center">
       <article className="w-5/6 sm:w-3/4 ">
         {post && (
           <>
@@ -17,10 +17,19 @@ const PostPage = ({ posts, handleDelete }) => {
             >
               {post.body}
             </p>
+            <Link to={`/edit/${post.id}`}>
+              <button
+                className="bg-green-500 text-white px-2 rounded-md hover:bg-green-600
+               float-right mr-[2rem] p-1"
+              >
+                Edit Post
+              </button>
+            </Link>
+
             <button
               onClick={() => handleDelete(post.id)}
               className="bg-red-500 text-white px-2 rounded-md hover:bg-red-600
-               float-right mr-[2rem] "
+               float-right mr-[2rem] p-1"
             >
               Delete Post
             </button>
