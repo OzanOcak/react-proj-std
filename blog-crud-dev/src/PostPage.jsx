@@ -1,8 +1,24 @@
-import { useParams, Link } from "react-router-dom";
+import { useContext } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import DataContext from "./context/DataContext";
 
-const PostPage = ({ posts, handleDelete }) => {
+const PostPage = () => {
+  const { posts, setPosts } = useContext(DataContext);
+
   const { id } = useParams();
   const post = posts.find((post) => post.id.toString() === id);
+  const navigate = useNavigate();
+
+  const handleDelete = (id) => {
+    try {
+      const postsList = posts.filter((post) => post.id !== id);
+      setPosts(postsList);
+      navigate("/");
+    } catch (err) {
+      console.log(`Error:${err.message}`);
+    }
+  };
+
   return (
     <main className="w-screen flex flex-col items-center">
       <article className="w-5/6 sm:w-3/4 ">
@@ -12,8 +28,8 @@ const PostPage = ({ posts, handleDelete }) => {
             <p className="postDate">{post.datetime}</p>
             <p
               className="my-4 first-line:tracking-widest
-  first-letter:text-5xl first-letter:font-bold first-letter:text-black
-  first-letter:mr-1 first-letter:float-left grow"
+              first-letter:text-5xl first-letter:font-bold first-letter:text-black
+              first-letter:mr-1 first-letter:float-left grow"
             >
               {post.body}
             </p>
