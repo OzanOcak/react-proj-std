@@ -11,6 +11,7 @@ import { useState, useEffect } from "react";
 import { format } from "date-fns";
 import EditPost from "./EditPost";
 import api from "./api/posts";
+import useAxiosFetch from "./hooks/useAxiosFetch";
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -22,25 +23,14 @@ function App() {
   const [editBody, setEditBody] = useState("");
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await api.get("/posts");
-        setPosts(response.data);
-      } catch (err) {
-        if (err.response) {
-          // Not in the 200 response range
-          console.log(err.response.data);
-          console.log(err.response.status);
-          console.log(err.response.headers);
-        } else {
-          console.log(`Error: ${err.message}`);
-        }
-      }
-    };
+  const { data, fetchError, isLoading } = useAxiosFetch(
+    "http://localhost:4000/posts"
+  );
 
-    fetchPosts();
-  }, []);
+  useEffect(() => {
+    setPosts(data);
+    console.log(data);
+  }, [data]);
 
   useEffect(() => {
     const filteredResults = posts?.filter(
@@ -52,16 +42,21 @@ function App() {
     setSearchResults(filteredResults.reverse());
   }, [posts, search]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const id = posts.length ? posts[posts.length - 1].id + 1 : 1;
     const datetime = format(new Date(), "MMMM dd, yyyy pp");
     const newPost = { id, title: postTitle, datetime, body: postBody };
-    const allPosts = [...posts, newPost];
-    setPosts(allPosts);
-    setPostTitle("");
-    setPostBody("");
-    navigate("/");
+    try {
+      const response = await api.post("/posts", newPost);
+      const allPosts = [...posts, response.data];
+      setPosts(allPosts);
+      setPostTitle("");
+      setPostBody("");
+      navigate("/");
+    } catch (err) {
+      console.log(`Error: ${err.message}`);
+    }
   };
 
   const handleEdit = async (id) => {
@@ -92,7 +87,16 @@ function App() {
       <Nav search={search} setSearch={setSearch} />
       <div className="grow">
         <Routes>
-          <Route path="/" element={<Home posts={searchResults} />} />
+          <Route
+            path="/"
+            element={
+              <Home
+                fetchError={fetchError}
+                isLoading={isLoading}
+                posts={searchResults}
+              />
+            }
+          />
           <Route
             path="/post"
             element={
