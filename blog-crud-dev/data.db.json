@@ -1,0 +1,20 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "datetime": "March 16, 2023 1:50:22 PM",
+      "body": "rgerdfgd"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
