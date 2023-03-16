@@ -11,7 +11,7 @@ const Nav = ({ search, setSearch }) => {
           placeholder="Search Posts"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="ring-offset-2 ring-2"
+          className="ring-offset-0 ring-2 rounded-lg p-1"
           autoComplete="off"
         />
       </form>

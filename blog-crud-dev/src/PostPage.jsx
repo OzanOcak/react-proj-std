@@ -8,10 +8,21 @@ const PostPage = ({ posts, handleDelete }) => {
       <article className="w-screen">
         {post && (
           <>
-            <h2>{post.title}</h2>
+            <h2 className="font-bold text-3xl">{post.title}</h2>
             <p className="postDate">{post.datetime}</p>
-            <p className="postBody">{post.body}</p>
-            <button onClick={() => handleDelete(post.id)}>Delete Post</button>
+            <p
+              className="my-4 first-line:tracking-widest
+  first-letter:text-5xl first-letter:font-bold first-letter:text-black
+  first-letter:mr-1 first-letter:float-left"
+            >
+              {post.body}
+            </p>
+            <button
+              onClick={() => handleDelete(post.id)}
+              className="bg-red-500 text-white px-2 rounded-md hover:bg-red-600"
+            >
+              Delete Post
+            </button>
           </>
         )}
         {!post && (

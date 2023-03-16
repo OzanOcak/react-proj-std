@@ -6,9 +6,9 @@ const NewPost = ({
   setPostBody,
 }) => {
   return (
-    <main className="NewPost">
-      <h2>New Post</h2>
-      <form className="newPostForm" onSubmit={handleSubmit}>
+    <main className="w-screen">
+      <h2 className="m-[2rem]">New Post</h2>
+      <form className="flex flex-col gap-2 px-[2rem]" onSubmit={handleSubmit}>
         <label htmlFor="postTitle">Title:</label>
         <input
           id="postTitle"
@@ -16,6 +16,8 @@ const NewPost = ({
           required
           value={postTitle}
           onChange={(e) => setPostTitle(e.target.value)}
+          className="ring-offset-0 ring-2 rounded-lg p-1"
+          autoComplete="off"
         />
         <label htmlFor="postBody">Post:</label>
         <textarea
@@ -23,8 +25,15 @@ const NewPost = ({
           required
           value={postBody}
           onChange={(e) => setPostBody(e.target.value)}
+          className="ring-2 ring-offset-0 rounded-lg p-1"
+          autoComplete="off"
         />
-        <button type="submit">Submit</button>
+        <button
+          type="submit"
+          className="bg-green-500 text-white p-2 rounded-lg hover:bg-green-600"
+        >
+          Submit
+        </button>
       </form>
     </main>
   );
