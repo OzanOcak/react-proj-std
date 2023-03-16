@@ -2,7 +2,7 @@ import Feed from "./Feed";
 
 const Home = ({ posts }) => {
   return (
-    <main className="w-screen px-[4rem] my-4 grow">
+    <main className="w-screen px-[4rem] my-4">
       {posts.length ? (
         <Feed posts={posts} />
       ) : (

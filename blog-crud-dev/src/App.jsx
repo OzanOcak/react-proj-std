@@ -72,31 +72,33 @@ function App() {
   };
 
   return (
-    <div className="flex flex-col items-center ">
+    <div className="flex flex-col items-center h-screen">
       <Header title="React JS Blog" />
       <Nav search={search} setSearch={setSearch} />
-      <Routes>
-        <Route path="/" element={<Home posts={searchResults} />} />
+      <div className="grow">
+        <Routes>
+          <Route path="/" element={<Home posts={searchResults} />} />
+          <Route
+            path="/post"
+            element={
+              <NewPost
+                handleSubmit={handleSubmit}
+                postTitle={postTitle}
+                setPostTitle={setPostTitle}
+                postBody={postBody}
+                setPostBody={setPostBody}
+              />
+            }
+          />
+          <Route
+            path="/post/:id"
+            element={<PostPage posts={posts} handleDelete={handleDelete} />}
+          />
+          <Route path="/about" element={<About />} />
+          <Route path="*/*" element={<Missing />} />
+        </Routes>
+      </div>
 
-        <Route
-          path="/post"
-          element={
-            <NewPost
-              handleSubmit={handleSubmit}
-              postTitle={postTitle}
-              setPostTitle={setPostTitle}
-              postBody={postBody}
-              setPostBody={setPostBody}
-            />
-          }
-        />
-        <Route
-          path="/post/:id"
-          element={<PostPage posts={posts} handleDelete={handleDelete} />}
-        />
-        <Route path="/about" element={<About />} />
-        <Route path="*" element={<Missing />} />
-      </Routes>
       <Footer />
     </div>
   );
