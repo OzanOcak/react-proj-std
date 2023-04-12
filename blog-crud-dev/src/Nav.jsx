@@ -23,7 +23,7 @@ const Nav = () => {
           <Link to="/">Home</Link>
         </li>
         <li className="hover:underline">
-          <Link to="/post">Post</Link>
+          <Link to="/list">Post</Link>
         </li>
         <li className="hover:underline">
           <Link to="/about">About</Link>

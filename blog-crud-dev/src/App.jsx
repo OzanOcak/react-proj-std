@@ -13,14 +13,14 @@ import { DataProvider } from "./context/DataContext";
 function App() {
   return (
     <div className="flex flex-col items-center h-screen">
-      <Header title="React JS Blog" />
+      <Header title="React Todo List with Context API" />
       <DataProvider>
         <Nav />
         <div className="grow">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/post" element={<NewPost />} />
-            <Route path="/post/:id" element={<PostPage />} />
+            <Route path="/list" element={<NewPost />} />
+            <Route path="/list/:id" element={<PostPage />} />
             <Route path="/edit/:id" element={<EditPost />} />
             <Route path="/about" element={<About />} />
             <Route path="*" element={<Missing />} />
