@@ -25,3 +25,6 @@ ul li{
   width:20rem; 
   justify-content: space-between;
 }
+.listing{display:flex; gap:1rem}
+.listing p{padding: .1rem .3rem;}
+.listing p:hover{background-color: lightgray ; }
