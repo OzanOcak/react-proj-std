@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import NewTodoForm from "./NewTodoForm";
 
 function App() {
   const [text, setText] = useState("");
@@ -19,16 +20,7 @@ function App() {
   function clearFilter() {
     setFilteredTodoItems(todos);
   }
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setTodos((currTodos) => {
-      return [
-        ...currTodos,
-        { id: crypto.randomUUID(), text: text, completed: false },
-      ];
-    });
-    setText("");
-  };
+
   const handleDelete = (todoId) => {
     const updatedTodos = (currTodos) => {
       return currTodos.filter((todo) => todo.id !== todoId);
@@ -48,15 +40,7 @@ function App() {
   }
   return (
     <div className="App">
-      <label>Todo App w/ filter</label>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        />
-        <button>add</button>
-      </form>
+      <NewTodoForm text={text} setText={setText} setTodos={setTodos} />
       <div className="listing">
         <p onClick={clearFilter}>all</p>
         <p onClick={filterNotCompleted}>not completed</p>
