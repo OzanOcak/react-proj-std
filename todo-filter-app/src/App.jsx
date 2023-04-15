@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import NewTodoForm from "./NewTodoForm";
 
 function App() {
-  const [text, setText] = useState("");
   const [todos, setTodos] = useState([]);
   const [filteredTodoItems, setFilteredTodoItems] = useState(todos);
   useEffect(() => {
@@ -40,7 +39,7 @@ function App() {
   }
   return (
     <div className="App">
-      <NewTodoForm text={text} setText={setText} setTodos={setTodos} />
+      <NewTodoForm setTodos={setTodos} />
       <div className="listing">
         <p onClick={clearFilter}>all</p>
         <p onClick={filterNotCompleted}>not completed</p>

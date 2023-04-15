@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
-function NewTodoForm({ text, setText, setTodos }) {
+function NewTodoForm({ setTodos }) {
+  const [text, setText] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setTodos((currTodos) => {
