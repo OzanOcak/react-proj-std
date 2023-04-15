@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import TodoItem from "./TodoItem";
 import useFilter from "../hooks/useFilter";
+import { TodoContext } from "../store/TodoContext";
 
-function TodoList({ todos, setTodos }) {
+function TodoList() {
+  const { todos, setTodos } = useContext(TodoContext);
   const {
     filteredTodoItems,
     filterCompleted,
