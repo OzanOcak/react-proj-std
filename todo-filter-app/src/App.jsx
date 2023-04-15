@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import NewTodoForm from "./NewTodoForm";
+import TodoList from "./TodoList";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -20,23 +21,6 @@ function App() {
     setFilteredTodoItems(todos);
   }
 
-  const handleDelete = (todoId) => {
-    const updatedTodos = (currTodos) => {
-      return currTodos.filter((todo) => todo.id !== todoId);
-    };
-    setTodos(updatedTodos);
-  };
-  function toggleTodo(id, completed) {
-    setTodos((currentTodos) => {
-      return currentTodos.map((todo) => {
-        if (todo.id === id) {
-          return { ...todo, completed };
-        }
-
-        return todo;
-      });
-    });
-  }
   return (
     <div className="App">
       <NewTodoForm setTodos={setTodos} />
@@ -49,19 +33,7 @@ function App() {
         <ul>
           {filteredTodoItems?.length === 0 && "--- no todo! ---"}
           {filteredTodoItems?.map((todo) => {
-            return (
-              <li key={todo.id}>
-                <span>
-                  <input
-                    type="checkbox"
-                    checked={todo.completed}
-                    onChange={(e) => toggleTodo(todo.id, e.target.checked)}
-                  />
-                  {todo.text}
-                </span>
-                <button onClick={() => handleDelete(todo.id)}>delete</button>
-              </li>
-            );
+            return <TodoList todo={todo} setTodos={setTodos} key={todo.id} />;
           })}
         </ul>
       </div>
