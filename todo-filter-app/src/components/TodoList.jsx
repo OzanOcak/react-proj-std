@@ -1,24 +1,15 @@
 import React, { useEffect, useState } from "react";
 import TodoItem from "./TodoItem";
+import useFilter from "../hooks/useFilter";
 
 function TodoList({ todos, setTodos }) {
-  const [filteredTodoItems, setFilteredTodoItems] = useState(todos);
+  const {
+    filteredTodoItems,
+    filterCompleted,
+    filterNotCompleted,
+    clearFilter,
+  } = useFilter(todos);
 
-  useEffect(() => {
-    setFilteredTodoItems(todos);
-  }, [todos]);
-
-  function filterCompleted() {
-    const filteredItems = todos.filter((todo) => todo.completed === true);
-    setFilteredTodoItems(filteredItems);
-  }
-  function filterNotCompleted() {
-    const filteredItems = todos.filter((todo) => todo.completed !== true);
-    setFilteredTodoItems(filteredItems);
-  }
-  function clearFilter() {
-    setFilteredTodoItems(todos);
-  }
   return (
     <>
       <div className="listing">
