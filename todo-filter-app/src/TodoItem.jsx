@@ -19,7 +19,7 @@ function TodoItem({ todo, setTodos }) {
     });
   }
   return (
-    <div>
+    <>
       <span>
         <input
           type="checkbox"
@@ -29,7 +29,7 @@ function TodoItem({ todo, setTodos }) {
         {todo.text}
       </span>
       <button onClick={() => handleDelete(todo.id)}>delete</button>
-    </div>
+    </>
   );
 }
 
