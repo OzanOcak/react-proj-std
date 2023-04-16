@@ -23,9 +23,9 @@ const PostPage = () => {
     <main className="w-screen flex flex-col items-center">
       <article className="w-5/6 sm:w-3/4 ">
         {post && (
-          <div className="flex flex-col h-[70vh]">
+          <div className="flex flex-col h-[70vh] ">
             <div className="flex-grow">
-              <h2 className="font-bold text-3xl">{post.title}</h2>
+              <h2 className="font-bold text-3xl mt-4">{post.title}</h2>
               <p className="postDate">{post.datetime}</p>
               <p
                 className="my-4 first-line:tracking-widest
@@ -35,7 +35,7 @@ const PostPage = () => {
                 {post.body}
               </p>
             </div>
-            <div className="flex-none">
+            <div className="flex-none mb-4">
               <Link to={`/edit/${post.id}`}>
                 <button
                   className="bg-green-500 text-white px-2 rounded-md hover:bg-green-600
