@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import DataContext from "./context/DataContext";
+import DataContext from "../context/DataContext";
 import { format } from "date-fns";
-import api from "./api/posts";
+import api from "../api/posts";
 
 const EditPost = () => {
   const [editTitle, setEditTitle] = useState("");
@@ -36,7 +36,7 @@ const EditPost = () => {
   };
 
   return (
-    <main className="w-screen  flex flex-col items-center">
+    <main className="w-screen  flex flex-col items-center mt-6">
       {editTitle && (
         <div className="w-5/6 sm:w-3/4">
           <h2 className="font-bold text-3xl">Edit Post</h2>

@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
-import DataContext from "./context/DataContext";
-import api from "./api/posts";
+import DataContext from "../context/DataContext";
+import api from "../api/posts";
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
 
@@ -28,9 +28,12 @@ const NewPost = () => {
   };
 
   return (
-    <main className="w-screen">
-      <h2 className="m-[2rem]">New Post</h2>
-      <form className="flex flex-col gap-2 px-[2rem]" onSubmit={handleSubmit}>
+    <main className="w-screen mt-8">
+      <h2 className="w-5/6 sm:w-3/4"></h2>
+      <form
+        className="flex flex-col w-5/6 sm:w-3/4 mx-auto gap-2 "
+        onSubmit={handleSubmit}
+      >
         <label htmlFor="postTitle">Title:</label>
         <input
           id="postTitle"
@@ -45,6 +48,7 @@ const NewPost = () => {
         <textarea
           id="postBody"
           required
+          rows={13}
           value={postBody}
           onChange={(e) => setPostBody(e.target.value)}
           className="ring-2 ring-offset-0 rounded-lg p-1"
